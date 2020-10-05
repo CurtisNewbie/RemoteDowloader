@@ -1,4 +1,4 @@
-package com.curtisnewbie.io;
+package com.curtisnewbie.io.model;
 
 /**
  * <p>

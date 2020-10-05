@@ -1,5 +1,7 @@
 package com.curtisnewbie.io;
 
+import com.curtisnewbie.io.model.ValidateResult;
+
 import java.io.File;
 
 /**
