@@ -24,13 +24,9 @@ public class IOWriterImpl implements IOWriter {
 
     @Override
     public File writeFile(String path, byte[] data) throws IllegalFilePathException, IOException {
-        if (path.startsWith("..")) {
-            logger.error("Path starts with '..' for parent directory, not permitted operation, aborting...", path);
-            throw new IllegalFilePathException(String.format("Absolute path: %s", path));
-        }
-        if (new File(path).isAbsolute()) {
-            logger.error("Absolute path: '{}' is not allowed, not permitted operation, aborting...", path);
-            throw new IllegalFilePathException(String.format("Absolute path: %s", path));
+        ValidateResult result = PathValidator.validate(path);
+        if (!result.isSuccess()) {
+            throw new IllegalFilePathException(result.getErrMsg());
         }
 
         File file = new File(root, path);
